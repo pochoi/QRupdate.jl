@@ -44,8 +44,8 @@ If `A` has no columns yet, input `A = []`, `R = []`.
                  Update u using du, but keep Ake's version in comments.
     29 Dec 2015: Converted to Julia.
 """
-function qraddcol{T}(A::AbstractMatrix{T}, Rin::AbstractMatrix{T},
-                  a::Vector{T}, β::T = 0.0)
+function qraddcol(A::AbstractMatrix{T}, Rin::AbstractMatrix{T},
+                  a::Vector{T}, β::T = 0.0) where T
 
     m, n = size(A)
     anorm  = norm(a)
@@ -107,7 +107,7 @@ qraddrow!(R, a) returns the triangular part of a QR factorization of
 [A; a], where A = QR for some Q.  The argument 'a' should be a row
 vector.
 """
-function qraddrow{T}(R::AbstractMatrix{T}, a::AbstractMatrix{T})
+function qraddrow(R::AbstractMatrix{T}, a::AbstractMatrix{T}) where T
     
     n = size(R,1)
     @inbounds @simd for k in 1:n
@@ -140,7 +140,7 @@ triangle.
     18 Jun 2007: R is now the exact size on entry and exit.
     30 Dec 2015: Translate to Julia.
 """
-function qrdelcol{T}(R::AbstractMatrix{T}, k::Int)
+function qrdelcol(R::AbstractMatrix{T}, k::Int) where T
 
     m = size(R,1)
     R = R[:,1:m .!= k]          # Delete the k-th column
