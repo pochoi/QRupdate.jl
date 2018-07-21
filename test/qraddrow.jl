@@ -1,6 +1,6 @@
 srand(0)
 
-facts("qraddrow") do
+@testset "qraddrow") begin
 
     m, n = 3, 3
     A = randn(m,m)
@@ -9,7 +9,7 @@ facts("qraddrow") do
         a = randn(m)'
         A = [A; a]
         R = qraddrow(R, a)
-        @fact vecnorm( R'R - A'*A ) --> less_than(1e-5)
+        @test vecnorm( R'R - A'*A ) ≈ 0.0
     end
 
 end

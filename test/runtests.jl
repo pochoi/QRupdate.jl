@@ -1,5 +1,5 @@
 using QRupdate
-using FactCheck
+using Test
 
 tests = ["qraddcol",
          "qraddrow",

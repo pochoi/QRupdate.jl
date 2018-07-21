@@ -1,6 +1,6 @@
 srand(0)
 
-facts("qrdelcol") do
+@testset "qrdelcol" begin
     m = 100
     A = randn(m,m)
     Q, R = qr(A)
@@ -8,6 +8,6 @@ facts("qrdelcol") do
         k = rand(1:i)
         A = A[:,1:i .!= k]
         R = qrdelcol(R, k)
-        @fact vecnorm( R'*R - A'*A ) --> less_than(1e-5)
+        @test vecnorm( R'*R - A'*A ) ≈ 0.0
     end
 end
