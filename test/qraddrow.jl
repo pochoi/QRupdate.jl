@@ -1,6 +1,6 @@
 srand(0)
 
-@testset "qraddrow") begin
+@testset "qraddrow" begin
 
     m, n = 3, 3
     A = randn(m,m)
@@ -9,7 +9,7 @@ srand(0)
         a = randn(m)'
         A = [A; a]
         R = qraddrow(R, a)
-        @test vecnorm( R'R - A'*A ) ≈ 0.0
+        @test norm( R'R - A'*A ) ≈ 0.0 atol=1e-5
     end
 
 end

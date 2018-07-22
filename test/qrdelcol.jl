@@ -8,6 +8,6 @@ srand(0)
         k = rand(1:i)
         A = A[:,1:i .!= k]
         R = qrdelcol(R, k)
-        @test vecnorm( R'*R - A'*A ) ≈ 0.0
+        @test norm( R'*R - A'*A ) ≈ 0.0 atol=1e-5
     end
 end

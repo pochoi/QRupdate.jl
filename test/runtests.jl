@@ -1,4 +1,6 @@
 using QRupdate
+using Random
+using LinearAlgebra
 using Test
 
 tests = ["qraddcol",
