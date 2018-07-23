@@ -1,5 +1,6 @@
 module QRupdate
 
+using Compat
 using Compat.LinearAlgebra
 
 export qraddcol, qraddrow, qrdelcol, csne
