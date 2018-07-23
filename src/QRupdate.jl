@@ -1,5 +1,7 @@
 module QRupdate
 
+using Compat.LinearAlgebra
+
 export qraddcol, qraddrow, qrdelcol, csne
 
 """
@@ -91,11 +93,11 @@ function qraddcol(A::AbstractMatrix{T}, Rin::AbstractMatrix{T},
     # This seems to be faster than concatenation, ie:
     # [ Rin         u
     #   zeros(1,n)  γ ]
-    Rout = Array{T}(n+1, n+1)
+    Rout = Array{T}(undef, n+1, n+1)
     Rout[1:n,1:n] = R
     Rout[1:n,n+1] = u
     Rout[n+1,n+1] = γ
-    Rout[n+1,1:n] = 0.0
+    Rout[n+1,1:n] .= 0.0
     
     return Rout
 end

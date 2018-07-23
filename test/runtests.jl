@@ -1,7 +1,8 @@
 using QRupdate
-using Random
-using LinearAlgebra
-using Test
+using Compat
+using Compat.Test
+using Compat.Random
+using Compat.LinearAlgebra
 
 tests = ["qraddcol",
          "qraddrow",
