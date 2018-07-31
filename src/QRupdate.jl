@@ -174,25 +174,27 @@ minimize  ||r||_2,  where  r := b - A*x
 using the corrected semi-normal equation approach described by
 Bjork (1987). Assumes that `R` is upper triangular.
 """
-function csne(Rin::AbstractMatrix, A::AbstractMatrix, b::Vector)
+function csne(Rin::AbstractMatrix{T}, A::AbstractMatrix{T}, b::AbstractVecOrMat) where T
 
     R = UpperTriangular(Rin)
     q = A'*b
     x = R' \ q
 
-    bnorm2 = sumabs2(b)
-    xnorm2 = sumabs2(x)
+    bnorm2 = sum(abs2.(b))
+    xnorm2 = sum(abs2.(x))
     d2 = bnorm2 - xnorm2
     
     x = R \ x
 
     # Apply one step of iterative refinement.
     r = b - A*x
+    println("r = ", sum(abs2.(r)))
     q = A'*r
     dx = R' \ q
     dx = R  \ dx
     x += dx
     r = b - A*x
+    println("r = ", sum(abs2.(r)))
     return (x, r)    
 end
 
